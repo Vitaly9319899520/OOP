@@ -1,3 +1,5 @@
+from src.product import Product, Category
+
 def test_product(first_product):
     assert first_product.name == "Samsung Galaxy S23 Ultra"
     assert first_product.description == "256GB, Серый цвет, 200MP камера"
@@ -8,11 +10,19 @@ def test_product(first_product):
 def test_category(first_category):
     assert first_category.name == "Смартфоны"
     assert first_category.description == (
-        "Смартфоны, как средство не только коммуникации, но и "
-        "получения дополнительных функций для удобства жизни"
+        "Смартфоны, как средство не только коммуникации, но и " "получения дополнительных функций для удобства жизни"
     )
 
-    assert isinstance(first_category.products, list)
-    assert  len(first_category.products) == 0
+    assert isinstance(first_category.product_in, list)
+    assert len(first_category.product_in) == 0
     assert first_category.category_count == 1
+
+def test_prod_create():
+    product = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product.name = "Samsung Galaxy S23 Ultra"
+    product.description = "256GB, Серый цвет, 200MP камера"
+    product.price = "180000.0"
+    product.quantity = 5
+
+
 
