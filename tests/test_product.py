@@ -24,17 +24,18 @@ def test_prod_create():
     product.price = "180000.0"
     product.quantity = 5
 
-new_product = Product.new_product(
-        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
-         "quantity": 5})
-
-# def test_new_product():
-#     product = Product.new_product(new_product)
-#     assert product.name == "Samsung Galaxy S23 Ultra"
-#     assert product.name == "Samsung Galaxy S23 Ultra"
-#     assert product.description == "256GB, Серый цвет, 200MP камера"
-#     assert product.price == "180000.0"
-#     assert product.quantity == 5
+def test_new_product():
+    data = {
+                "name": "Samsung Galaxy S23 Ultra",
+                "description": "256GB, Серый цвет, 200MP камера",
+                "price": 180000.0,
+                "quantity": 5
+            }
+    product = Product.new_product(data)
+    assert product.name == "Samsung Galaxy S23 Ultra"
+    assert product.description == "256GB, Серый цвет, 200MP камера"
+    assert product.price == 180000.0
+    assert product.quantity == 5
 
 def test_get_price():
     product = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)

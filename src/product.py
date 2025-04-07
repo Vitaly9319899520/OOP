@@ -58,7 +58,7 @@ class Category:
     def products(self):
         product_list = ""
         for product in self.__products:
-            product_list += f'{product.price} руб. Остаток: {product.quantity} шт.\n'
+            product_list += f'{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n'
         return product_list
 
     @property
