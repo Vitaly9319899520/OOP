@@ -1,5 +1,6 @@
 from src.product import Product, Category
 
+
 def test_product(first_product):
     assert first_product.name == "Samsung Galaxy S23 Ultra"
     assert first_product.description == "256GB, Серый цвет, 200MP камера"
@@ -17,6 +18,7 @@ def test_category(first_category):
     assert len(first_category.product_in) == 0
     assert first_category.category_count == 1
 
+
 def test_prod_create():
     product = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     product.name = "Samsung Galaxy S23 Ultra"
@@ -24,22 +26,25 @@ def test_prod_create():
     product.price = "180000.0"
     product.quantity = 5
 
+
 def test_new_product():
     data = {
-                "name": "Samsung Galaxy S23 Ultra",
-                "description": "256GB, Серый цвет, 200MP камера",
-                "price": 180000.0,
-                "quantity": 5
-            }
+        "name": "Samsung Galaxy S23 Ultra",
+        "description": "256GB, Серый цвет, 200MP камера",
+        "price": 180000.0,
+        "quantity": 5,
+    }
     product = Product.new_product(data)
     assert product.name == "Samsung Galaxy S23 Ultra"
     assert product.description == "256GB, Серый цвет, 200MP камера"
     assert product.price == 180000.0
     assert product.quantity == 5
 
+
 def test_get_price():
-    product = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
+    product = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
     assert product.price == 123000.0
+
 
 def test_set_price():
     product = Product("Test", "Description", 100, 10)
@@ -48,3 +53,15 @@ def test_set_price():
 
     product.price = -50
     assert product.price == 150  # Цена не должна измениться
+
+
+def test_product_str(product):
+    assert str(product) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+
+
+def test_category_str(category):
+    assert str(category) == "Смартфоны, Количество продуктов: 0 шт."
+
+
+def add(product1, product2):
+    assert product1 + product2 == 2580000.0

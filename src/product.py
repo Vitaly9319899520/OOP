@@ -15,7 +15,13 @@ class Product:
         if quantity > 0:
             self.quantity = quantity
         else:
-            raise ValueError('Товар с нулевым количеством не будет быть добавлен')
+            raise ValueError("Товар с нулевым количеством не будет быть добавлен")
+
+    def __str__(self):
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        return (self.__price * self.quantity) + (other.__price * other.quantity)
 
     @classmethod
     def new_product(cls, new_product: dict):
@@ -32,12 +38,11 @@ class Product:
         return self.__price
 
     @price.setter
-    def price(self,new_price):
+    def price(self, new_price):
         if float(new_price) == 0 or float(new_price) < 0:
-            print('Цена не должна быть нулевая или отрицательная')
+            print("Цена не должна быть нулевая или отрицательная")
         else:
             self.__price = new_price
-
 
 
 class Category:
@@ -50,24 +55,25 @@ class Category:
     def __init__(self, name, description, products):
         self.name = name
         self.description = description
-        self.__products = []
+        self.__products = products
         Category.category_count += 1
         Category.product_count += len(self.__products)
 
-    @property
-    def products(self):
-        product_list = ""
-        for product in self.__products:
-            product_list += f'{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n'
-        return product_list
-
-    @property
-    def product_in(self):
-        return self.__products
-
+    def __str__(self):
+        return f"{self.name}, Количество продуктов: {len(self.__products)} шт."
 
     def add_product(self, product: Product):
         self.__products.append(product)
         Category.category_count += 1
 
+    @property
+    def products(self):
+        product_list = ""
+        for product in self.__products:
+            product_list += f"{str(product)}"
+        return product_list
 
+    @property
+    # для тестов
+    def product_in(self):
+        return self.__products
