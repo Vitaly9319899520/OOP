@@ -21,7 +21,10 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        return (self.__price * self.quantity) + (other.__price * other.quantity)
+        if type(other) is Product:
+            # print(type(other))
+            return (self.__price * self.quantity) + (other.__price * other.quantity)
+        raise TypeError
 
     @classmethod
     def new_product(cls, new_product: dict):
@@ -63,8 +66,11 @@ class Category:
         return f"{self.name}, Количество продуктов: {sum(product.quantity for product in self.__products)} шт."
 
     def add_product(self, product: Product):
-        self.__products.append(product)
-        Category.category_count += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.category_count += 1
+        else:
+            raise TypeError
 
     @property
     def products(self):
