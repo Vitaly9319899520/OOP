@@ -1,17 +1,21 @@
 from unicodedata import category
+from src.baseproduct import BaseProduct
+from src.baseproduct import PrintMixin
 
 
-class Product:
+class Product(BaseProduct, PrintMixin):
     name: str
     description: str
     price: float
     quantity: int
 
     def __init__(self, name, description, price, quantity):
+        # super().__init__()
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
         if quantity > 0:
             self.quantity = quantity
         else:
