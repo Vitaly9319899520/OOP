@@ -9,11 +9,11 @@ class Smartphone(Product):
         self.memory = memory
         self.color = color
 
-    def __add__(self, other):
-        if type(other) is Smartphone:
-            # print(type(other))
-            return (self.price * self.quantity) + (other.price * other.quantity)
-        raise TypeError
+    # def __add__(self, other):
+    #     if type(other) is Smartphone:
+    #         # print(type(other))
+    #         return (self.price * self.quantity) + (other.price * other.quantity)
+    #     raise TypeError
 
 
 if __name__ == "__main__":
