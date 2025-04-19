@@ -1,4 +1,4 @@
-from unicodedata import category
+
 from src.baseproduct import BaseProduct
 from src.baseproduct import PrintMixin
 
@@ -25,7 +25,7 @@ class Product(BaseProduct, PrintMixin):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        if type(other) is Product:
+        if type(other) is type(other):
             # print(type(other))
             return (self.__price * self.quantity) + (other.__price * other.quantity)
         raise TypeError
