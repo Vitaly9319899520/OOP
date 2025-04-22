@@ -69,3 +69,11 @@ def product_Lawn1():
 @pytest.fixture
 def product_Lawn2():
     return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+
+@pytest.fixture
+def test_wit_product():
+    return Category(
+        name="Смартфоны",
+        description="Смартфоны, как средство не только коммуникации, но и "
+                    "получения дополнительных функций для удобства жизни",
+        products=[])

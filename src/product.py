@@ -17,7 +17,7 @@ class Product(BaseProduct, PrintMixin):
         if quantity > 0:
             self.quantity = quantity
         else:
-            raise ValueError("Товар с нулевым количеством не будет быть добавлен")
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
 
     def __str__(self):
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
@@ -74,6 +74,12 @@ class Category:
         else:
             raise TypeError
 
+    def middle_price(self):
+        try:
+            return sum([product.price for product in self.__products]) / len(self.__products)
+        except ZeroDivisionError:
+            return 0
+
     @property
     def products(self):
         product_list = ""
@@ -85,3 +91,14 @@ class Category:
     # для тестов
     def product_in(self):
         return self.__products
+
+    # class MyCustomError(Exception):
+    #     def __init__(self, message):
+    #         super().__init__(message)  # передаём сообщение родительскому классу Exception
+    #
+    #
+    # # Использование:
+    # try:
+    #     raise MyCustomError('Это моя ошибка')
+    # except MyCustomError as e:
+    #     print(e)  # выведет 'Это моя ошибка'
